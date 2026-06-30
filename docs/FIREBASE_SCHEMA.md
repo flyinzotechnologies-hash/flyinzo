@@ -70,7 +70,6 @@ Only founder/super_admin may create or modify this collection (except a user's o
 ```
 dealId: string
 title: string
-notes: string | null
 dealType: "direct" | "stopover" | "multi_city"
 tripType: "one_way" | "round_trip" | "multi_city"
 originIata: string
@@ -133,11 +132,14 @@ bookingUrl: string
 provider: string | null
 affiliateCode: string | null
 sourceLink: string | null
+notes: string | null
 lastCheckedAt: timestamp | null
 createdAt: timestamp
 updatedAt: timestamp
 updatedBy: string
 ```
+`notes` is an internal admin-only field for tracking booking-link status (e.g. "checked manually, works as of [date]"). Never exposed to any client outside the admin app.
+
 Admin: read/write. Premium user: read only if deal entitlement check passes. Free/guest: no read access (guest blocked entirely if `bookingRequiresLogin` is true).
 
 ### `deals/{dealId}/private/returnPlan` — PROTECTED
